@@ -1,0 +1,8 @@
+<phpunit bootstrap="bootstrap.hh">
+
+  <testsuites>
+    <testsuite name="ActionDispatch">
+    </testsuite>
+  </testsuites>
+
+</phpunit>
