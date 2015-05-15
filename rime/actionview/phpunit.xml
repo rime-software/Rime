@@ -1,0 +1,10 @@
+<phpunit bootstrap="bootstrap.hh">
+
+  <testsuites>
+    <testsuite name="ActionView">
+      <file>test/TemplateRegistryTest.hh</file>
+      <file>test/ViewTest.hh</file>
+    </testsuite>
+  </testsuites>
+
+</phpunit>
