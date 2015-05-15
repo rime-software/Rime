@@ -1,0 +1,9 @@
+<phpunit bootstrap="_bootstrap/bootstrap.hh" backupGlobals="false">
+	
+  <testsuites>
+    <testsuite name="dependencies">
+        <directory>dependencies/</directory>
+    </testsuite>
+  </testsuites>
+
+</phpunit>
