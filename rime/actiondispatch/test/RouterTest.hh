@@ -261,6 +261,54 @@ class RouterTest extends \PHPUnit_Framework_TestCase
         $this->assertInstanceOf('\Rime\ActionDispatch\Route', $actual['page.read']);
         $this->assertEquals('/page/{id}{format}', $actual['page.read']->path);
     }
+    
+    public function testSetNamespace()
+    {
+  	    // default namespace -- completely optional
+  		$this->router->setNamespace('index',false,function($router){
+  		
+  			$router->add('home','/')->addValues(
+  				array(
+  					'action'=>'index',
+  					'template'=>'master'
+  				)
+  			);
+  		
+  		},array('directory'=>false,'format'=>'html'));
+  
+  		$this->router->setNamespace('admin','/admin',function($router){
+  		
+  			$router->add('index','')->addValues(
+  				array(
+  					'action'=>'index',
+  					'template'=>'master',
+  					'format'=>'html'
+  				)
+  			);
+  		
+  		});
+		
+		 $routes = $this->router->getRoutes();
+		 
+		 // test that the namespace sets the controller properly
+		 $this->assertEquals($routes['home']->values['controller'],'index');
+		 
+		 // validate that we can assign a default as well in the third param
+		  $this->assertEquals($routes['home']->values['format'],'html');
+		 
+		 //validate that the directory value has been overriden from index to false
+		 $this->assertFalse($routes['home']->values['directory']);
+		 
+		 // test admin url namespace and directory
+		 $actual = $this->router->match('/admin');
+		 $this->assertIsRoute($actual);
+		 
+		 // test namespace params
+		 $this->assertEquals($routes['admin.index']->values['directory'],'admin');
+		 $this->assertEquals($routes['admin.index']->values['controller'],'admin');
+
+
+    }
 
     public function testGetDebug()
     {
