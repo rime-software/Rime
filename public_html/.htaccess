@@ -1,0 +1,14 @@
+Options +FollowSymLinks
+RewriteEngine On
+
+#force a trailing slash
+#RewriteCond %{REQUEST_FILENAME} !-f
+#RewriteRule ^(.*[^/])$ /$1/ [L,R=301]
+
+RewriteCond %{REQUEST_URI} \.(php|hh)$
+RewriteRule ^(.*)$ fcgi://127.0.0.1:9000/var/www/rimesoftware/public_html/$1 [L,P,QSA]
+
+#RewriteCond %{DOCUMENT_ROOT}}%{QUERY_STRING} !-d
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_URI} !\.(css|js|jpg|png)$
+RewriteRule ^(.*)$ fcgi://127.0.0.1:9000/var/www/rimesoftware/public_html/index.hh?/$1 [L,P,QSA]
