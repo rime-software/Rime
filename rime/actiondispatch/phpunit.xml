@@ -2,9 +2,9 @@
 
   <testsuites>
     <testsuite name="ActionDispatch">
-      <file>unit/RouteTest.hh</file>
-      <file>unit/RouterTest.hh</file>
-      <file>unit/GeneratorTest.hh</file>
+      <file>test/RouteTest.hh</file>
+      <file>test/RouterTest.hh</file>
+      <file>test/GeneratorTest.hh</file>
     </testsuite>
   </testsuites>
 

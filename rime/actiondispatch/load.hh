@@ -1,16 +1,16 @@
 <?hh // strict
 
-require_once 'exception/Exception.hh';
-require_once 'exception/RouteNotFound.hh';
-require_once 'exception/UnexpectedValue.hh';
-require_once 'spec/AbstractSpec.hh';
-require_once 'route/RouteGenerator.hh';
-require_once 'regex/Regex.hh';
-require_once 'route/Route.hh';
-require_once 'route/RouteCollection.hh';
-require_once 'factories/RouteFactory.hh';
-require_once 'route/Router.hh';
-require_once 'factories/RouterFactory.hh';
+require_once 'src/exception/Exception.hh';
+require_once 'src/exception/RouteNotFound.hh';
+require_once 'src/exception/UnexpectedValue.hh';
+require_once 'src/spec/AbstractSpec.hh';
+require_once 'src/route/RouteGenerator.hh';
+require_once 'src/regex/Regex.hh';
+require_once 'src/route/Route.hh';
+require_once 'src/route/RouteCollection.hh';
+require_once 'src/factories/RouteFactory.hh';
+require_once 'src/route/Router.hh';
+require_once 'src/factories/RouterFactory.hh';
 
 $router_factory = new \Rime\ActionDispatch\RouterFactory;
 $router = $router_factory->newInstance();
