@@ -17,7 +17,7 @@ class View extends BaseView
     }
   
     $this->setTemplateRegistry($this->getLayoutRegistry());
-    return $this->render($layout);
+    return $this->render($layout,$this->getData());
   }
   
   protected function render($name, $vars = array())

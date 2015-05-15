@@ -1,0 +1,3 @@
+<?hh // strict
+
+echo $greeting;
