@@ -125,13 +125,31 @@ class ViewTest extends \PHPUnit_Framework_TestCase
     $expect = 'foo bar baz dib zim gir irk';
     $this->assertSame($expect, $actual);
   }
+  
+  public function testViewVariableRendering()
+  {
+    $view = new View(
+      new TemplateRegistry(array(
+        'bar' => __DIR__ . '/templates/bar_template.hh',
+        '_partial' => __DIR__ . '/templates/_partial.hh')),
+      new TemplateRegistry
+    );
+    
+    $view->setView('bar');
+    
+    $actual = $view->__invoke();
+    
+    $this->assertSame('Hello World!', $actual);
 
+  }
+  
   public function testMapFilesToTemplateRegistryOnConstruct()
   {
     $view = new View(
       new TemplateRegistry(array('foo' => __DIR__ . '/templates/foo_template.hh')),
       new TemplateRegistry
     );
+    
     $view->setView('foo');
     $actual = $view->__invoke();
     
