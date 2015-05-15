@@ -8,9 +8,6 @@ require_once 'src/route/RouteGenerator.hh';
 require_once 'src/regex/Regex.hh';
 require_once 'src/route/Route.hh';
 require_once 'src/route/RouteCollection.hh';
-require_once 'src/factories/RouteFactory.hh';
+require_once 'src/factory/RouteFactory.hh';
 require_once 'src/route/Router.hh';
-require_once 'src/factories/RouterFactory.hh';
-
-$router_factory = new \Rime\ActionDispatch\RouterFactory;
-$router = $router_factory->newInstance();
+require_once 'src/factory/RouterFactory.hh';
