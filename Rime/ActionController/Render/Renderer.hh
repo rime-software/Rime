@@ -7,7 +7,7 @@ class Renderer
   protected Map<Mixed> $data;
   
   public function __construct($formats = Map { 
-    "html" => true,
+    "html" => false,
     "xml"  => false,
     "json" => false 
   })

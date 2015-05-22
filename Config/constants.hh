@@ -8,6 +8,8 @@
  */
 define('HHVM_MIN_VERSION',380);
 
+define('DEV_MODE',true);
+
 /*
  * Base Path relative to public_html/index.hh
  * BASE_PATH provides the fundamental basis to autoloading classes
@@ -15,3 +17,14 @@ define('HHVM_MIN_VERSION',380);
  * and views.
  */
 define('BASE_PATH',dirname(dirname(__FILE__)));
+
+define('APPLICATION_PATH',BASE_PATH.'/Application');
+define('CACHE_PATH',APPLICATION_PATH.'/Cache');
+
+define('LOG_PATH',BASE_PATH.'/Log');
+define('CONFIG_PATH',BASE_PATH.'/Config');
+
+define('VIEW_PATH',APPLICATION_PATH.'/Views');
+define('TEMPLATE_PATH',APPLICATION_PATH.'/Views/Templates');
+
+define('DEFAULT_TEMPLATE','master');
