@@ -28,5 +28,12 @@ class BaseControllerTest extends \PHPUnit_Framework_TestCase
       "Mock Controller does not have BaseController in its inheritance tree"
     );
   }
+  
+  public function testGetData()
+  {
+    $this->assertInstanceOf('HH\Map',$this->mock_controller->getData(),
+      "Controller.getData does not return an instance of a Map"
+    );
+  }
     
 }
