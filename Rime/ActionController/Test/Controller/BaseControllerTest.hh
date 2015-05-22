@@ -7,7 +7,7 @@ require_once 'MockController.hh';
 class BaseControllerTest extends \PHPUnit_Framework_TestCase
 {
   protected MockController $mock_controller;
-    
+  
   protected function setUp()
   {
     parent::setUp();
@@ -51,6 +51,24 @@ class BaseControllerTest extends \PHPUnit_Framework_TestCase
     );
     $this->setExpectedException('\Rime\ActionController\Exception\UndefinedProperty');
     $this->mock_controller->fake_greeting;
+  }
+  
+  public function testDefaultRendererFormat()
+  {
+    $this->assertEquals($this->mock_controller->getRenderer()->getData()->count(),3,
+      "Failed to set default render types to BaseController.renderer"
+    );
+  }
+   
+  public function testSetResponseDataTypes()
+  {
+    $this->mock_controller->respondTo( ($format) ==> {
+      $format->json = true;
+    });
+    
+    $this->assertEquals(true,$this->mock_controller->getRenderer()->json,
+      "Unable to set response data types"
+    );
   }
     
 }
