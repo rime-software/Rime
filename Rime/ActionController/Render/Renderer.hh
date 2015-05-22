@@ -7,9 +7,9 @@ class Renderer
   protected Map<Mixed> $data;
   
   public function __construct($formats = Map { 
-    "html" => false,
-    "xml"  => false,
-    "json" => false 
+    ".html" => false,
+    ".xml"  => false,
+    ".json" => false 
   })
   {
     $this->data = $formats;
@@ -22,13 +22,13 @@ class Renderer
   
   public function __set(string $name, Mixed $value): void
   {
-    $this->data[$name] = $value;
+    $this->data['.'.$name] = $value;
   }
   
   public function __get(string $name): Mixed
   {
-    if( $this->data->contains($name) )
-      return $this->data->get($name);
+    if( $this->data->contains('.'.$name) )
+      return $this->data->get('.'.$name);
     else
       return false;
   }

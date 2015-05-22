@@ -11,8 +11,8 @@ abstract class BaseView
   private $view;
   private $section;
   private $capture;
-  private \Rime\ActionView\Registry\TemplateRegistry $template_registry;
-  private \Rime\ActionView\Registry\TemplateRegistry $view_registry;
+  private ?\Rime\ActionView\Registry\TemplateRegistry $template_registry;
+  private ?\Rime\ActionView\Registry\TemplateRegistry $view_registry;
   private \Rime\ActionView\Registry\TemplateRegistry $layout_registry;
   
   public function __construct(\Rime\ActionView\Registry\TemplateRegistry $view_registry, \Rime\ActionView\Registry\TemplateRegistry $layout_registry) 
@@ -21,7 +21,12 @@ abstract class BaseView
     $this->view_registry = $view_registry;
     $this->layout_registry = $layout_registry;
   }
-
+  
+  public function setRegistries(?\Rime\ActionView\Registry\TemplateRegistry $view_registry = null, ?\Rime\ActionView\Registry\TemplateRegistry $layout_registry = null)
+  {
+    $this->view_registry = $view_registry;
+    $this->layout_registry = $layout_registry;
+  }
 
   public function __get($key): mixed
   {

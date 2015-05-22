@@ -19,6 +19,12 @@ abstract class BaseController implements \Rime\ActionController\Implementation\i
     call_user_func($lambda, $this->getRenderer());
   }
   
+  public function canRespondTo($type = '.html'): boolean
+  {
+    $type = str_replace('.', '', $type);
+    return $this->renderer->$type ? true : false;
+  }
+  
   public function getData(): Map<Mixed>
   {
     return $this->data;
