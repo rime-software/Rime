@@ -21,8 +21,8 @@ class BaseControllerTest extends \PHPUnit_Framework_TestCase
   
   public function testControllerInheritanceTree()
   {
-    $this->assertInstanceOf('\Rime\ActionController\Controller\AbstractController',$this->mock_controller,
-      "Mock Controller does not have AbstractController in its inheritance tree"
+    $this->assertInstanceOf('\Rime\ActionController\Implementation\iAbstractController',$this->mock_controller,
+      "Mock Controller does not have iAbstractController in its inheritance tree"
     );
     $this->assertInstanceOf('\Rime\ActionController\Controller\BaseController',$this->mock_controller,
       "Mock Controller does not have BaseController in its inheritance tree"
