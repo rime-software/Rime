@@ -15,4 +15,12 @@ abstract class BaseController implements \Rime\ActionController\Implementation\i
   {
     $this->data[$name] = $value;
   }
+  
+  public function __get(string $name): Mixed
+  {
+    if( $this->data->contains($name) )
+      return $this->data->get($name);
+    else
+      throw new \Rime\ActionController\Exception\UndefinedProperty;
+  }
 }

@@ -12,6 +12,7 @@ class BaseControllerTest extends \PHPUnit_Framework_TestCase
   {
     parent::setUp();
     $this->mock_controller = new \Rime\ActionController\Test\MockController;
+    $this->mock_controller->greeting = "Hello World!";
   }
   
   protected function tearDown()
@@ -36,12 +37,20 @@ class BaseControllerTest extends \PHPUnit_Framework_TestCase
     );
   }
   
-  public function testClassVariables()
+  public function testSetClassVariables()
   {
-    $this->mock_controller->greeting = "Hello World!";
     $this->assertEquals($this->mock_controller->getData()->count(),1,
       "Failed to insert class attribute into controller.data"
     );
+  }
+  
+  public function testGetClassVariables()
+  {
+    $this->assertEquals($this->mock_controller->greeting,"Hello World!",
+      "Failed to get controller class variable"
+    );
+    $this->setExpectedException('\Rime\ActionController\Exception\UndefinedProperty');
+    $this->mock_controller->fake_greeting;
   }
     
 }

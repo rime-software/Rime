@@ -8,4 +8,5 @@ interface iAbstractController
   
   public function getData(): Map<Mixed>;
   public function __set(string $name, Mixed $value): void;
+  public function __get(string $name): Mixed;
 }
