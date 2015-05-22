@@ -1,0 +1,14 @@
+<phpunit bootstrap="bootstrap.hh">
+
+  <testsuites>
+    <testsuite name="ActionDispatch">
+      <file>Test/Dispatcher/RouteTest.hh</file>
+      <file>Test/Dispatcher/RouterTest.hh</file>
+      <file>Test/Dispatcher/GeneratorTest.hh</file>
+    </testsuite>
+    <testsuite name="Session">
+      <file>Test/Session/CsrfTokenTest.hh</file>
+    </testsuite>
+  </testsuites>
+
+</phpunit>
