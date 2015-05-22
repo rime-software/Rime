@@ -39,7 +39,9 @@ class BaseControllerTest extends \PHPUnit_Framework_TestCase
   public function testClassVariables()
   {
     $this->mock_controller->greeting = "Hello World!";
-    $this->assertEquals($this->mock_controller->getData()->count(),1);
+    $this->assertEquals($this->mock_controller->getData()->count(),1,
+      "Failed to insert class attribute into controller.data"
+    );
   }
     
 }
