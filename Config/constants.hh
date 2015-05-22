@@ -25,6 +25,6 @@ define('LOG_PATH',BASE_PATH.'/Log');
 define('CONFIG_PATH',BASE_PATH.'/Config');
 
 define('VIEW_PATH',APPLICATION_PATH.'/Views');
-define('TEMPLATE_PATH',APPLICATION_PATH.'/Views/Templates');
+define('TEMPLATE_PATH',APPLICATION_PATH.'/Views');
 
 define('DEFAULT_TEMPLATE','master');

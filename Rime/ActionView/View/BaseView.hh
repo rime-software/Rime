@@ -117,7 +117,7 @@ abstract class BaseView
     $this->setSection($name, $body);
   }
      
-  public function getLayoutRegistry(): \Rime\ActionView\Registry\TemplateRegistry
+  public function &getLayoutRegistry(): \Rime\ActionView\Registry\TemplateRegistry
   {
     return $this->layout_registry;
   }
@@ -132,7 +132,7 @@ abstract class BaseView
     return $this->view;
   }
   
-  public function getViewRegistry(): \Rime\ActionView\Registry\TemplateRegistry
+  public function &getViewRegistry(): \Rime\ActionView\Registry\TemplateRegistry
   {
     return $this->view_registry;
   }

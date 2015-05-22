@@ -1,9 +1,15 @@
 <?hh // strict
-    
+
   namespace Application
   {
+    
+    $debug_timer = microtime(true);
+    
     require_once '../Config/config.hh';
 
+  //-------------------
+  // Check Route Caching
+  
   	if(!DEV_MODE)
   	{
   		$routeCache = CACHE_PATH.'/routes.cache';
@@ -54,30 +60,76 @@
       
   //-------------------
   // Load in the registries
+  
       $controller->view->setRegistries(
         new \Rime\ActionView\Registry\TemplateRegistry($viewMap),
         new \Rime\ActionView\Registry\TemplateRegistry($templateMap)
       );
+      
   //-------------------
   // Execute the requested action TODO: Add validation
   
       $controller->$actionName();
-      echo "<pre>";
 
   //-------------------
   // Make sure the controller can respond to the following formats
+  
       if( $controller->canRespondTo($route->params['format']) )
       {
+        switch($route->params['format'])
+        {
+          
+  //-------------------
+  // JSON
+          case '.json':
+            header('Content-Type: application/json');
+            echo json_encode($controller->getData(),JSON_PRETTY_PRINT);
+            break;
+            
+  //-------------------
+  // XML - Unsupported currently
+  
+          case '.xml':
+            die('Unsupported');
+            break;
+            
+  //-------------------
+  // HTML
+  
+          default:
+            if(is_bool($controller->getRenderer()->getData()->get('.html')))
+            {
+              $viewName = $controllerName.'/'.$actionName.'.hh';
+              $controller->view->getViewRegistry()->set('rime.default',VIEW_PATH.'/'.$dir.$viewName);
+              $controller->view->setView('rime.default');
+              $controller->view->setLayout('master');
+
+  //-------------------
+  // HTML - rime.default
+                        
+            }
+            else
+            {
+  //-------------------
+  // HTML - specified route 
+              
+            }
+            echo $controller->view->__invoke();
+            break;
+        }
         
+        printf("Script Execution took %0.9f seconds.", microtime(true) - $debug_timer);
+           
       }
       else
       {
+  //-------------------
+  // Internal Error - Controller is unable to respond to the requested format
         die('Unable to respond to: '.$route->params['format']);
       }
     }
     else
-    {
-      
+    {    
   //-------------------
   // 404 - Page Not Found
       die('not found');
