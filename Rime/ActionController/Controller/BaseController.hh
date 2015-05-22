@@ -10,4 +10,9 @@ abstract class BaseController implements \Rime\ActionController\Implementation\i
   {
     return $this->data;
   }
+  
+  public function __set(string $name, Mixed $value): void
+  {
+    $this->data[$name] = $value;
+  }
 }

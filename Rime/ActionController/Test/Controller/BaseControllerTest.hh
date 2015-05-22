@@ -35,5 +35,11 @@ class BaseControllerTest extends \PHPUnit_Framework_TestCase
       "Controller.getData does not return an instance of a Map"
     );
   }
+  
+  public function testClassVariables()
+  {
+    $this->mock_controller->greeting = "Hello World!";
+    $this->assertEquals($this->mock_controller->getData()->count(),1);
+  }
     
 }
