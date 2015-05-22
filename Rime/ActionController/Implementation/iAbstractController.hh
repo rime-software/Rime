@@ -4,6 +4,7 @@ namespace Rime\ActionController\Implementation;
 
 interface iAbstractController
 {
+  public \Rime\ActionView\View\View $view;
   protected Map<Mixed> $data;
   protected \Rime\ActionController\Render\Renderer $renderer;
   
