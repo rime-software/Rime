@@ -5,11 +5,11 @@ namespace Rime\ActionView\View;
 class View extends BaseView
 {
 
-  public function __invoke()
+  public function __invoke($vars = array())
   {
     $this->setTemplateRegistry($this->getViewRegistry());
-    $this->setContent($this->render($this->getView()));
-  
+    $this->setContent($this->render($this->getView(),$vars));
+
     $layout = $this->getLayout();
     if (! $layout) 
     {

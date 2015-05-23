@@ -1,3 +1,3 @@
 <?hh // strict
 
-  echo "Hello World!";
+  echo $greeting."<br>";

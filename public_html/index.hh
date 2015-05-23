@@ -68,14 +68,19 @@
       
   //-------------------
   // Execute the requested action TODO: Add validation
-  
+      
+      $controller->view->setLayout(
+        $route->params['template'] ? $route->params['template'] : 'master'
+      );
+      
       $controller->$actionName();
 
   //-------------------
   // Make sure the controller can respond to the following formats
   
-      if( $controller->canRespondTo($route->params['format']) )
+      if( $controller->canRespondTo($route->params['format']) || !$route->params['format'] )
       {
+        $controller->view->addData((array)$controller->getData());
         switch($route->params['format'])
         {
           
@@ -96,25 +101,38 @@
   //-------------------
   // HTML
   
-          default:
+          case '.html':
             if(is_bool($controller->getRenderer()->getData()->get('.html')))
             {
+              
               $viewName = $controllerName.'/'.$actionName.'.hh';
               $controller->view->getViewRegistry()->set('rime.default',VIEW_PATH.'/'.$dir.$viewName);
               $controller->view->setView('rime.default');
-              $controller->view->setLayout('master');
-
+              
   //-------------------
   // HTML - rime.default
                         
             }
             else
             {
-  //-------------------
-  // HTML - specified route 
               
+  //-------------------
+  // HTML - specified route
+   
+              $controller->view->setView(
+                $controller->getRenderer()->getData()->get('.html')
+              );
+                
             }
-            echo $controller->view->__invoke();
+            
+            echo $controller->view->__invoke((array)$controller->getData());
+            break;
+            
+  //-------------------
+  // Unknown return type or none specified 
+  // Maybe custom response type here in the future          
+          default:
+            
             break;
         }
         

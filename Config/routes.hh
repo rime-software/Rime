@@ -9,7 +9,7 @@ $router->addGet('home','/')->addValues(
 		'controller'=>'index',
 		'action'=>'index',
 		'template'=>'master',
-		'format'=>'html'
+		'format'=>'.html'
 	)
 );
 
