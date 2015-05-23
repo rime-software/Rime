@@ -129,10 +129,10 @@
             break;
             
   //-------------------
-  // Unknown return type or none specified 
-  // Maybe custom response type here in the future          
+  // Custom return type or unknown specified          
           default:
-            
+            $actionName = str_replace('.', '', $route->params['format']);
+            (new \Application\Hooks\ResponseHook($controller))->$actionName();
             break;
         }
         
