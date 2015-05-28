@@ -1,10 +1,10 @@
 <?hh // strict
 
-namespace Application\Hooks;
+namespace Lib\Response;
 
 use \Rime\ActionController\Implementation as iController;
 
-class ResponseHook
+class CustomResponse
 {
   private iController\iAbstractController $controller;
   

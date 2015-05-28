@@ -2,11 +2,13 @@
 
   namespace Application
   {
-    
-    $debug_timer = microtime(true);
-    
+
     require_once '../Config/config.hh';
 
+    $Rime = \Rime\System\Framework\Rime::getInstance();    
+    $Rime->attach( new \Rime\System\Performance\MicroTimer(),'timer');
+    $Rime->timer->addTimer("executionTime");
+    
   //-------------------
   // Check Route Caching
   
@@ -39,6 +41,7 @@
     
     if ($route)
     {
+      $Rime->attach($route,'route');
   		$controllerName = $route->params['controller'];
   		$actionName = $route->params['action'];
   		$dir = isset($route->params['directory']) && $route->params['directory'] ? str_replace('/','\\',$route->params['directory'].'/') : ''; 
@@ -105,12 +108,12 @@
             if(is_bool($controller->getRenderer()->getData()->get('.html')))
             {
               
+  //-------------------
+  // HTML - rime.default
+  
               $viewName = $controllerName.'/'.$actionName.'.hh';
               $controller->view->getViewRegistry()->set('rime.default',VIEW_PATH.'/'.$dir.$viewName);
               $controller->view->setView('rime.default');
-              
-  //-------------------
-  // HTML - rime.default
                         
             }
             else
@@ -129,15 +132,17 @@
             break;
             
   //-------------------
-  // Custom return type or unknown specified          
+  // Custom return type, no type, or unknown specified  
+          
           default:
-            $actionName = str_replace('.', '', $route->params['format']);
-            (new \Application\Hooks\ResponseHook($controller))->$actionName();
+            $actionName = str_replace('.', '', $route->params['format']);           
+            if(method_exists('\Lib\Response\CustomResponse', $actionName))
+              (new \Lib\Response\CustomResponse($controller))->$actionName();
             break;
         }
         
-        printf("Script Execution took %0.9f seconds.", microtime(true) - $debug_timer);
-           
+        //$Rime->timer->printMessage("Script Execution took %0.9f seconds.",'executionTime');
+          
       }
       else
       {
