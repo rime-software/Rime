@@ -4,7 +4,7 @@ namespace Rime\ActionController\Controller;
 
 abstract class BaseController implements \Rime\ActionController\Implementation\iAbstractController
 {
-  public \Rime\ActionView\View\View $view;
+  public \Rime\ActionView\Render\View $view;
   protected Map<Mixed> $data = Map {};
   protected \Rime\ActionController\Render\Renderer $renderer;
   

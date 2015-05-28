@@ -128,7 +128,7 @@ class ViewTest extends \PHPUnit_Framework_TestCase
   
   public function testViewVariableRendering()
   {
-    $view = new \Rime\ActionView\View\View(
+    $view = new \Rime\ActionView\Render\View(
       new \Rime\ActionView\Registry\TemplateRegistry(array(
         'bar' => __DIR__ . '/templates/bar_template.hh',
         '_partial' => __DIR__ . '/templates/_partial.hh')),
@@ -145,7 +145,7 @@ class ViewTest extends \PHPUnit_Framework_TestCase
   
   public function testMapFilesToTemplateRegistryOnConstruct()
   {
-    $view = new \Rime\ActionView\View\View(
+    $view = new \Rime\ActionView\Render\View(
       new \Rime\ActionView\Registry\TemplateRegistry(array('foo' => __DIR__ . '/templates/foo_template.hh')),
       new \Rime\ActionView\Registry\TemplateRegistry
     );

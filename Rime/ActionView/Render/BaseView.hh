@@ -1,6 +1,6 @@
 <?hh // strict
 
-namespace Rime\ActionView\View;
+namespace Rime\ActionView\Render;
 
 abstract class BaseView
 {
