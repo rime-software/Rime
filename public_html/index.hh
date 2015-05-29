@@ -61,21 +61,6 @@
         $controller = new BASE_PATH.$controllerName();
       }
       
-  //-------------------
-  // Load in the registries
-  
-      $controller->view->setRegistries(
-        new \Rime\ActionView\Registry\TemplateRegistry($viewMap),
-        new \Rime\ActionView\Registry\TemplateRegistry($templateMap)
-      );
-      
-  //-------------------
-  // Execute the requested action TODO: Add validation
-      
-      $controller->view->setLayout(
-        $route->params['template'] ? $route->params['template'] : 'master'
-      );
-      
       $controller->$actionName();
 
   //-------------------
@@ -83,7 +68,6 @@
   
       if( $controller->canRespondTo($route->params['format']) || !$route->params['format'] )
       {
-        $controller->view->addData((array)$controller->getData());
         switch($route->params['format'])
         {
           
@@ -105,9 +89,29 @@
   // HTML
   
           case '.html':
+          
+            $controller->addData((array)$controller->getData());
+  //-------------------
+  // Load in the registries
+      
+            $controller->view->setRegistries(
+              new \Rime\ActionView\Registry\TemplateRegistry($viewMap),
+              new \Rime\ActionView\Registry\TemplateRegistry($templateMap)
+            );
+      
+  //-------------------
+  // Execute the requested action TODO: Add validation
+            
+            if(!$controller->view->getLayout())
+            {
+              $controller->view->setLayout(
+                $route->params['template'] ? $route->params['template'] : 'master'
+              );
+            }
+            
             if(is_bool($controller->getRenderer()->getData()->get('.html')))
             {
-              
+  
   //-------------------
   // HTML - rime.default
   

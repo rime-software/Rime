@@ -4,14 +4,14 @@ namespace Rime\ActionController\Controller;
 
 abstract class BaseController implements \Rime\ActionController\Implementation\iAbstractController
 {
-  public \Rime\ActionView\Render\View $view;
+  public ?\Rime\ActionView\Render\View $view;
   protected Map<Mixed> $data = Map {};
   protected \Rime\ActionController\Render\Renderer $renderer;
   
   public function __construct()
   {
     $this->renderer = new \Rime\ActionController\Render\Renderer; 
-    $this->view = (new \Rime\ActionView\Factory\ViewFactory)->newInstance(); 
+    $this->view = null; 
   }
   
   public function respondTo(callable $lambda): void
@@ -33,6 +33,15 @@ abstract class BaseController implements \Rime\ActionController\Implementation\i
   public function &getRenderer(): \Rime\ActionController\Render\Renderer
   {
     return $this->renderer;
+  }
+
+  public function __call(string $method, array $arguments): mixed
+  {
+    if(is_null($this->view))
+    {
+      $this->view = (new \Rime\ActionView\Factory\ViewFactory)->newInstance();
+    }
+    $this->view->$method($arguments[0] ? $arguments : false);
   }
   
   public function __set(string $name, Mixed $value): void
