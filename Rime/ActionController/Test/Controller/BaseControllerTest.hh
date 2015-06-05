@@ -12,6 +12,7 @@ class BaseControllerTest extends \PHPUnit_Framework_TestCase
   {
     parent::setUp();
     $this->mock_controller = new \Rime\ActionController\Test\MockController;
+    $this->mock_controller = new \Rime\ActionController\Render\Renderer;
     $this->mock_controller->greeting = "Hello World!";
   }
   
