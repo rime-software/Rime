@@ -38,7 +38,7 @@
     
   //-------------------
   // Check whether a route has been found 
-    
+
     if ($route)
     {
       $Rime->attach($route,'route');
@@ -60,8 +60,19 @@
       {
         $controller = new BASE_PATH.$controllerName();
       }
+
+      $params = array();
       
-      $controller->$actionName();
+      if( preg_match_all('/{+(.*?)}/', $route->path, $getParams) )
+      {
+        foreach($getParams[1] as $match)
+        {
+          $params[$match] = $route->params[$match];
+        }
+      }
+      
+      call_user_func_array(array($controller,$actionName), $params);
+      //$controller->$actionName();
 
   //-------------------
   // Make sure the controller can respond to the following formats
