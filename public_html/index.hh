@@ -60,7 +60,9 @@
       {
         $controller = new BASE_PATH.$controllerName();
       }
-
+      
+      $controller->renderer = new \Rime\ActionController\Render\Renderer;
+      
       $params = array();
       
       if( preg_match_all('/{+(.*?)}/', $route->path, $getParams) )
@@ -69,10 +71,10 @@
         {
           $params[$match] = $route->params[$match];
         }
+        unset($getParams);
       }
       
       call_user_func_array(array($controller,$actionName), $params);
-      //$controller->$actionName();
 
   //-------------------
   // Make sure the controller can respond to the following formats

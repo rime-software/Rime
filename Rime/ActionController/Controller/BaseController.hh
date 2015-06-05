@@ -4,15 +4,11 @@ namespace Rime\ActionController\Controller;
 
 abstract class BaseController implements \Rime\ActionController\Implementation\iAbstractController
 {
-  public ?\Rime\ActionView\Render\View $view;
+  public ?\Rime\ActionView\Render\View $view = null;
+  public \Rime\ActionController\Render\Renderer $renderer;
   protected Map<Mixed> $data = Map {};
-  protected \Rime\ActionController\Render\Renderer $renderer;
   
-  public function __construct()
-  {
-    $this->renderer = new \Rime\ActionController\Render\Renderer; 
-    $this->view = null; 
-  }
+  public function __construct(){}
   
   public function respondTo(callable $lambda): void
   {
