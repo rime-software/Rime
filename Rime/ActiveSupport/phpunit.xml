@@ -1,0 +1,9 @@
+<phpunit bootstrap="bootstrap.hh">
+
+  <testsuites>
+    <testsuite name="ActiveSupport">
+      <file>Test/Helpers/RimeDecoratorTest.hh</file>
+    </testsuite>
+  </testsuites>
+
+</phpunit>
