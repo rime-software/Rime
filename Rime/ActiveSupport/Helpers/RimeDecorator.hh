@@ -1,6 +1,6 @@
 <?hh // strict
 
-namespace Rime\ActionSupport\Helpers;
+namespace Rime\ActiveSupport\Helpers;
 
 abstract class RimeDecorator
 {

@@ -1,7 +1,7 @@
 <?hh // strict
 
 namespace Rime\ActiveSupport\Test;
-use Rime\ActionSupport\Helpers\RimeDecorator as RimeDecorator;
+use Rime\ActiveSupport\Helpers\RimeDecorator as RimeDecorator;
 
 class RimeDecoratorTest extends \PHPUnit_Framework_TestCase
 {
