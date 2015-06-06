@@ -78,8 +78,16 @@
 
   //-------------------
   // Make sure the controller can respond to the following formats
-  
-      if( $controller->canRespondTo($route->params['format']) || !$route->params['format'] )
+    
+      
+      if
+      ( 
+        ( method_exists($controller, 'canRespondTo') 
+          && $controller->canRespondTo($route->params['format']) 
+        )
+        || 
+        !$route->params['format'] 
+      )
       {
         switch($route->params['format'])
         {
