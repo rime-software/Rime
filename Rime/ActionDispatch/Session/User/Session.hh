@@ -82,7 +82,7 @@ class Session
     {
       $this->moveFlash();
     }
-  
+
     // done
     return $started;
   }

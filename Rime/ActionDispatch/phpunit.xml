@@ -8,6 +8,8 @@
     </testsuite>
     <testsuite name="Session">
       <file>Test/Session/CsrfTokenTest.hh</file>
+      <file>Test/Session/SessionFactoryTest.hh</file>
+      <file>Test/Session/SegmentTest.hh</file>
     </testsuite>
   </testsuites>
 
