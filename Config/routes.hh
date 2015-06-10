@@ -12,15 +12,3 @@ $router->addGet('home','/')->addValues(
 		'format'=>'.html'
 	)
 );
-
-$router->attach('index','/index', function ($router) {
-  $router->add('index', '{format}')
-    ->addTokens(array(
-      'format' => '(\.json|\.xml|\.html)?'
-    ))
-    ->addValues(array(
-      'format' => '.html',
-      'controller' => 'index',
-      'action' => 'index'
-    ));
-});
