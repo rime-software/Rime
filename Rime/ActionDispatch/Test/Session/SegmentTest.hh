@@ -18,7 +18,6 @@ class SegmentTest extends \PHPUnit_Framework_TestCase
     protected function setUp()
     {
         $this->session = $this->newSession();
-        var_dump($this->session->isStarted());
         $this->segment = $this->session->getSegment($this->name);
     }
     

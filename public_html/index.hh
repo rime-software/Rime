@@ -7,11 +7,14 @@
 
     $Rime = \Rime\System\Framework\Rime::getInstance();    
     $Rime->attach( new \Rime\System\Performance\MicroTimer(),'timer');
+    $Rime->attach( new \Rime\System\Framework\Loader(),'load');
+    $Rime->attach( new \Rime\ActionDispatch\Session\Factory\SessionFactory,'sessionFactory');
+    
     $Rime->timer->addTimer("executionTime");
     
   //-------------------
   // Check Route Caching
-  
+    
   	if(!DEV_MODE)
   	{
   		$routeCache = CACHE_PATH.'/routes.cache';
