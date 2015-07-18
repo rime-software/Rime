@@ -28,6 +28,10 @@ abstract class BaseController implements \Rime\ActionController\Implementation\i
   
   public function &getRenderer(): \Rime\ActionController\Render\Renderer
   {
+    if(is_null($this->renderer))
+    {
+      $this->renderer = new \Rime\ActionController\Render\Renderer;
+    }
     return $this->renderer;
   }
 

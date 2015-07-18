@@ -38,7 +38,7 @@
   	$_SERVER['REQUEST_URI'] = (substr($_SERVER['REQUEST_URI'],-1) == '/' && strlen($_SERVER['REQUEST_URI']) > 1) ? substr($_SERVER['REQUEST_URI'],0,-1) : $_SERVER['REQUEST_URI'];
   	$path = parse_url($_SERVER["REQUEST_URI"], PHP_URL_PATH);
   	$route = $router->match($path, $_SERVER);
-    
+
   //-------------------
   // Check whether a route has been found 
 
@@ -64,8 +64,6 @@
         $controller = new BASE_PATH.$controllerName();
       }
       
-      $controller->renderer = new \Rime\ActionController\Render\Renderer;
-      
       $params = array();
       
       if( preg_match_all('/{+(.*?)}/', $route->path, $getParams) )
@@ -81,8 +79,7 @@
 
   //-------------------
   // Make sure the controller can respond to the following formats
-    
-      
+        
       if
       ( 
         ( method_exists($controller, 'canRespondTo') 
