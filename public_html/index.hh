@@ -6,12 +6,11 @@
     require_once '../Config/config.hh';
 
     $Rime = \Rime\System\Framework\Rime::getInstance();    
-    $Rime->attach( new \Rime\System\Performance\MicroTimer(),'timer');
     $Rime->attach( new \Rime\System\Framework\Loader(),'load');
     $Rime->attach( new \Rime\ActionDispatch\Session\Factory\SessionFactory,'sessionFactory');
-    
-    $Rime->timer->addTimer("executionTime");
-    
+    $Rime->attach($viewMap,'viewMap');
+    $Rime->attach($templateMap,'templateMap');
+
   //-------------------
   // Check Route Caching
     
@@ -75,8 +74,16 @@
         unset($getParams);
       }
       
-      call_user_func_array(array($controller,$actionName), $params);
-
+      if(method_exists($controller, $actionName))
+      {
+        call_user_func_array(array($controller,$actionName), $params);
+      }
+      else
+      {
+        throw new \Rime\ActionController\Exception\UndefinedAction(
+          "Call to undefined action '".$actionName."' in class ".get_class($controller)
+        );
+      }
   //-------------------
   // Make sure the controller can respond to the following formats
         
@@ -111,15 +118,9 @@
   
           case '.html':
           
-            $controller->addData((array)$controller->getData());
-  //-------------------
-  // Load in the registries
-      
-            $controller->view->setRegistries(
-              new \Rime\ActionView\Registry\TemplateRegistry($viewMap),
-              new \Rime\ActionView\Registry\TemplateRegistry($templateMap)
-            );
-      
+            $controller->loadViewRegistries();
+            $controller->view->addData((array)$controller->getData());
+
   //-------------------
   // Execute the requested action TODO: Add validation
             
@@ -166,8 +167,6 @@
             break;
         }
         
-        //$Rime->timer->printMessage("Script Execution took %0.9f seconds.",'executionTime');
-          
       }
       else
       {

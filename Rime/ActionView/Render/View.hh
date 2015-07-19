@@ -20,7 +20,7 @@ class View extends BaseView
     return $this->render($layout,$vars);
   }
   
-  protected function render($name, $vars = array())
+  public function render($name, $vars = array())
   {
     ob_start();
     $this->getTemplate($name)->__invoke($vars);
