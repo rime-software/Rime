@@ -71,7 +71,7 @@ namespace ActiveRecord;
  * @see Serialization
  * @see Validations
  */
-class Model
+class Model implements \JsonSerializable
 {
 	/**
 	 * An instance of {@link Errors} and will be instantiated once a write method is called.
@@ -1576,6 +1576,17 @@ class Model
 	public function to_xml(array $options=array())
 	{
 		return $this->serialize('Xml', $options);
+	}
+
+	/**
+	 * Casts the attributes of the object to a json string when json_encode is called
+	 *
+	 * @see Serialization
+	 * @return string JSON representation of the model attributes
+	 */
+	public function jsonSerialize()
+	{
+  	return $this->attributes();
 	}
 
 	/**
