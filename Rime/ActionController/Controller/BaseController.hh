@@ -59,6 +59,12 @@ abstract class BaseController implements \Rime\ActionController\Implementation\i
     echo $this->view->__invoke($data);
   }
   
+  protected function redirect_to(string $url, bool $replace = true, $redirect_code = 301, string $content_type = 'text/html'): void
+  {
+    header('Content-Type: '.$content_type);
+    header('Location: '.$url, $replace, $redirect_code);
+  }
+  
   public function __set(string $name, Mixed $value): void
   {
     $this->data[$name] = $value;
