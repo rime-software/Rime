@@ -14,5 +14,4 @@ class indexController extends \Rime\ActionController\Controller\BaseController
       $format->html = 'index.index';
     });
   }
-  
 }

@@ -8,6 +8,8 @@ abstract class BaseController implements \Rime\ActionController\Implementation\i
   public \Rime\ActionController\Render\Renderer $renderer;
   protected Map<Mixed> $data = Map {};
   
+  public static array<string> $before_filter = array();
+  
   public function __construct(){}
   
   public function respondTo(callable $lambda): void
@@ -59,10 +61,37 @@ abstract class BaseController implements \Rime\ActionController\Implementation\i
     echo $this->view->__invoke($data);
   }
   
+  public function filter(string $action, string $type = 'Before', $namespace = '\\Rime\\ActionController\\Filter\\'): void
+  {
+    $filter_data = null;
+    switch($type)
+    {
+      case 'Before':
+        $filter_data = $this::$before_filter;
+        break;
+      default:
+        
+    }
+    $results = \Rime\ActionController\Filter\FilterFactory::newInstance($type,$namespace)->filter(
+      $action, $filter_data
+    );
+    
+    $this->execute_filter_actions($results);
+    
+  }
+  
   protected function redirect_to(string $url, bool $replace = true, $redirect_code = 301, string $content_type = 'text/html'): void
   {
     header('Content-Type: '.$content_type);
     header('Location: '.$url, $replace, $redirect_code);
+  }
+  
+  private function execute_filter_actions(array<string> $actions): mixed
+  {
+    foreach($actions as $action)
+    {
+      $this->$action();
+    }
   }
   
   public function __set(string $name, Mixed $value): void

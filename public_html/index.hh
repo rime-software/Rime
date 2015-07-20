@@ -76,6 +76,7 @@
       
       if(method_exists($controller, $actionName))
       {
+        $controller->filter($actionName);
         call_user_func_array(array($controller,$actionName), $params);
       }
       else
