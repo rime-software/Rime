@@ -23,7 +23,7 @@ Options +FollowSymLinks
 RewriteEngine On
 RewriteCond %{REQUEST_FILENAME} !-f
 RewriteCond %{REQUEST_URI} !\.(css|js|jpg|png)$
-RewriteRule ^(.*)$ index.php?/$1 [L,P,QSA]
+RewriteRule ^(.*)$ /index.php?/$1 [L,QSA]
 </pre>
 6. Configure your Composer to install the HHVM on Heroku (XHP is not show in this case)
 <pre>
