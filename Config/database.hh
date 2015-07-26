@@ -6,5 +6,7 @@
   {
        $cfg->set_model_directory(MODEL_PATH);
        $cfg->set_connections(array(
-          'development' => 'mysql://user:mypass@myhost/my_db'));
+          'development' => 'mysql://user:mypass@myhost/my_db',
+          'test'        => 'mysql://user:mypass@myhost/my_db'
+        ));
   });
