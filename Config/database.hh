@@ -10,3 +10,11 @@
           'test'        => 'mysql://user:mypass@myhost/my_db'
         ));
   });
+  
+  $cfg = ActiveRecord\Config::instance();
+  $cfg->set_default_connection(DEV_MODE ? 'development' : 'production');
+  
+  if(defined('RUN_TESTS'))
+  {
+    $cfg->set_default_connection('test');
+  }
