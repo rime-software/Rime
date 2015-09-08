@@ -1,4 +1,4 @@
-# Rime
+# Rime [![Build Status](https://travis-ci.org/rime-software/Rime.svg)](https://travis-ci.org/rime-software/Rime)
 Rime MVC Framework
 
 ## Getting Started - Heroku
