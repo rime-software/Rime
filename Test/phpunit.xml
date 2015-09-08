@@ -2,8 +2,9 @@
 	
   <testsuites>
     <testsuite name="dependencies">
-        <directory>dependencies/</directory>
+        <file>dependencies/dependencyTest.hh</file>
     </testsuite>
+    <testsuite
   </testsuites>
 
 </phpunit>

@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<phpunit backupGlobals="false"
+         bootstrap="ci_bootstrap.hh"
+>
+    <testsuites>
+        <testsuite name="ActionController">
+          <file>../Rime/ActionController/Test/Controller/BaseControllerTest.hh</file>
+        </testsuite>
+        <testsuite name="ActionDispatch">
+          <file>../Rime/ActionDispatch/Test/Dispatcher/RouteTest.hh</file>
+          <file>../Rime/ActionDispatch/Test/Dispatcher/RouterTest.hh</file>
+          <file>../Rime/ActionDispatch/Test/Dispatcher/GeneratorTest.hh</file>
+        </testsuite>
+        <testsuite name="Session">
+          <file>.../Rime/ActionDispatch/Test/Session/CsrfTokenTest.hh</file>
+          <file>../Rime/ActionDispatch/Test/Session/SessionFactoryTest.hh</file>
+          <file>../Rime/ActionDispatch/Test/Session/SegmentTest.hh</file>
+        </testsuite>
+        <testsuite name="ActionView">
+          <file>../Rime/ActionView/Test/TemplateRegistryTest.hh</file>
+          <file>../Rime/ActionView/Test/ViewTest.hh</file>
+        </testsuite>
+        <testsuite name="ActiveSupport">
+          <file>../Rime/ActiveSupport/Test/Helpers/RimeDecoratorTest.hh</file>
+        </testsuite>
+    </testsuites>
+</phpunit>

@@ -1,10 +1,8 @@
 <?php
-require_once 'Log.php';
-require_once 'PHPUnit/Framework/TestCase.php';
+
 require_once 'SnakeCase_PHPUnit_Framework_TestCase.php';
 require_once 'DatabaseTest.php';
 require_once 'AdapterTest.php';
-require_once dirname(__FILE__) . '/../../ActiveRecord.php';
 
 // whether or not to run the slow non-crucial tests
 $GLOBALS['slow_tests'] = false;
@@ -31,10 +29,10 @@ ActiveRecord\Config::initialize(function($cfg)
 			$GLOBALS['slow_tests'] = true;
 	}
 
-	$logger = Log::singleton('file', dirname(__FILE__) . '/../log/query.log','ident',array('mode' => 0664, 'timeFormat' =>  '%Y-%m-%d %H:%M:%S'));
+	//$logger = Log::singleton('file', dirname(__FILE__) . '/../log/query.log','ident',array('mode' => 0664, 'timeFormat' =>  '%Y-%m-%d %H:%M:%S'));
 
-	$cfg->set_logging(true);
-	$cfg->set_logger($logger);
+	$cfg->set_logging(false);
+	//$cfg->set_logger($logger);
 });
 
 error_reporting(E_ALL | E_STRICT);

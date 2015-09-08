@@ -1,0 +1,12 @@
+language: php
+
+php:
+  - hhvm
+  
+before_script:
+  - mysql -e 'CREATE DATABASE phpar_test;'
+  - psql -c 'CREATE DATABASE phpar_test;' -U postgres
+
+env: PHPAR_MYSQL=mysql://root@127.0.0.1/phpar_test PHPAR_PGSQL=pgsql://postgres@127.0.0.1/phpar_test
+
+script: phpunit --configuration CI/phpunit.xml --coverage-text

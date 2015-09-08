@@ -1,6 +1,6 @@
 <?hh // strict
 
-class PersonDecorator extends \Rime\ActionSupport\Helpers\RimeDecorator
+class PersonDecorator extends \Rime\ActiveSupport\Helpers\RimeDecorator
 {
   public $age;
   
